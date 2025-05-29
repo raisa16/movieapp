@@ -1,0 +1,22 @@
+{
+  "name": "movieapp",
+  "version": "1.0.0",
+  "description": "movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raisa16/movieapp.git"
+  },
+  "author": "Raisa Toscano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raisa16/movieapp/issues"
+  },
+  "homepage": "https://github.com/raisa16/movieapp#readme",
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}
