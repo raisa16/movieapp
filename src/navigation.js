@@ -60,12 +60,12 @@ function trendsPage() {
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.remove('inactive');
-    searchForm.classList.remove('inactive');
+    searchForm.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
-    movieDetailSection.classList.remove('inactive');
+    movieDetailSection.classList.add('inactive');
 
     headerCategoryTitle.innerHTML = "Tendencias";
     getTrendingMovies()
@@ -84,7 +84,7 @@ function searchPage() {
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
-    movieDetailSection.classList.remove('inactive');
+    movieDetailSection.classList.add('inactive');
 
     const [, query] = location.hash.split('=');
 
