@@ -47,7 +47,7 @@ function navigator() {
 function homePage() {
     console.log('HOME!!!!')
 
-    headerSection.classList.remove('header-container--long')
+    headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.add('inactive');
     headerTitle.classList.remove('inactive');
@@ -55,12 +55,14 @@ function homePage() {
     searchForm.classList.remove('inactive');
 
     trendingPreviewSection.classList.remove('inactive');
+    //likedMovieSection.classList.remove('inactive');
     categoriesPreviewSection.classList.remove('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.add('inactive');
 
 getTrendingMoviesPreview()
 getCategoriesPreview()
+getLikedMovies()
 
 }
 function trendsPage() {
@@ -76,6 +78,7 @@ function trendsPage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    likedMovieSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
@@ -98,6 +101,7 @@ function searchPage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    likedMovieSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
@@ -119,6 +123,7 @@ function moviePage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    likedMovieSection.classList.add('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
     
@@ -139,6 +144,7 @@ function categoriesPage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    likedMovieSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
     const [, categoryData] = location.hash.split('=');
