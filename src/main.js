@@ -18,9 +18,11 @@ const lazyLoader = new IntersectionObserver((entries) => {
   }
 });
 });
-function createMovies(movies, container, lazyLoad = false) {
-  container.innerHTML = '';
-
+function createMovies(movies, container,
+   { lazyLoad = false, clean = true } = {}) {
+  if(clean) {
+    container.innerHTML = '';
+  }
   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
@@ -75,7 +77,7 @@ async function getTrendingMoviesPreview() {
   const {data} = await api('trending/movie/day');  
   const movies = data.results;
 
-  createMovies(movies, trendingMoviesPreviewList, true)
+  createMovies(movies, trendingMoviesPreviewList, { lazyLoad : true })
   console.log({data, movies})
 }
 
@@ -96,7 +98,7 @@ async function getMoviesByCategory(id) {
   });  
   const movies = data.results;
 
-  createMovies(movies, genericSection,true)
+  createMovies(movies, genericSection, { lazyLoad : true })
  
   console.log({data, movies})
 }
@@ -109,7 +111,7 @@ async function getMoviesBySearch(query) {
   });  
   const movies = data.results;
 
-  createMovies(movies, genericSection, true)
+  createMovies(movies, genericSection, { lazyLoad : true})
  
   console.log({data, movies})
 }
@@ -118,7 +120,46 @@ async function getTrendingMovies() {
    const {data} = await api('trending/movie/day');
   const movies = data.results;
 
-  createMovies(movies, genericSection, true)
+  createMovies(movies, genericSection, { lazyLoad : true})
+  //const btnLoadMore = document.createElement('button')
+  //btnLoadMore.innerText = ('Cargar mas');
+  //btnLoadMore.addEventListener('click', getPaginatedMovies);
+  //genericSection.appendChild(btnLoadMore);
+}
+
+
+
+async function getPaginatedTrendingMovies() {
+  const { 
+    scrolltop,
+    scrollHeigth,
+    clientHeight 
+    } =document.document.documentElement;
+
+  const scrollIsBottom = (scrolltop + clientHeight) >= (scrollHeigth - 15);
+  
+  if(scrollIsBottom) {
+    page++;
+  const { data } = await api('trending/movie/day', {
+    params: {
+      page
+    },
+  });
+  const movies = data.results;
+
+  createMovies(
+    movies, 
+    genericSection,
+    { lazyLoad : true, clean: false }
+  );
+
+  }
+  
+  //const btnLoadMore = document.createElement('button')
+  //btnLoadMore.innerText = ('Cargar mas');
+  //btnLoadMore.addEventListener('click', getPaginatedMovies);
+  //genericSection.appendChild(btnLoadMore);
+  
 }
 
 async function getMovieById(id) {
@@ -147,5 +188,5 @@ async function getRelatedMoviesId(id){
   const { data } = await api(`movie/${id}/recommendations`)
   const relatedMovies = data.results;
 
-  createMovies(relatedMovies, relatedMoviesContainer, true)
+  createMovies(relatedMovies, relatedMoviesContainer, { lazyLoad : true})
 }
